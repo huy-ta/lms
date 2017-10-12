@@ -1,0 +1,119 @@
+.root {
+	-fx-background-color: white;
+	-fx-font-family: 'Righteous', sans-serif;
+	-fx-font-size: 20px;
+}
+
+#left-grid {
+	-fx-background-image: url("file:/home/huytq/prj1code/LMS/img/loginbg.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 450px 600px;
+	-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+.text-field {
+	-fx-font-family: 'Josefin Sans', sans-serif;
+	-fx-text-fill: #646f98;
+	-fx-text-box-border: transparent;
+	-fx-border-width: 0 0 1.5px 0;
+	-fx-padding: 1px;
+	-fx-background-color: transparent;
+	-fx-border-color: transparent transparent #8289a3 transparent;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-prompt-text-fill: #8289a3;
+}
+
+.text-field:focused {
+	-fx-font-weight: bold;
+	-fx-border-color: transparent transparent #646f98 transparent;
+	-fx-border-width: 0 0 2px 0;
+	
+}
+
+.title-text {
+	-fx-font-size: 30px;
+	-fx-font-weight: bold;
+}
+
+.medium-text {
+	-fx-font-size: 22px;
+}
+
+.small-text {
+	-fx-font-size: 14px;
+}
+
+.clickable {
+	-fx-cursor: hand;
+}
+
+#brand-name {
+	-fx-font-family: 'Lobster', cursive;
+	-fx-font-size: 50px;
+}
+
+#tool-bar {
+	-fx-background-color: transparent;
+}
+
+#username {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/man-user-faint.png');
+ 	-fx-background-size: 25px 25px;
+ 	-fx-padding: 0 0 5px 0;
+ 	-fx-background-origin: content-box;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: right center;
+}
+
+#username:focused {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/man-user.png');
+}
+
+#password {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/key-faint.png');
+ 	-fx-background-size: 25px 25px;
+ 	-fx-padding: 0 0 5px 0;
+ 	-fx-background-origin: content-box;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: right center;
+}
+
+#password:focused {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/key.png');
+}
+
+.button {
+	-fx-border-color: transparent transparent transparent transparent;
+	-fx-background-color: transparent;
+}
+
+.button:hover {
+	-fx-cursor: hand;
+}
+
+#login-button {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/login-faint.png');
+ 	-fx-background-repeat: no-repeat;
+ 	-fx-background-size: contain;
+  	-fx-background-position: center;
+}
+
+#login-button:hover {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/login.png');
+  	-fx-effect: dropshadow(three-pass-box, black, 2, 0.2, 1, 0);
+}
+
+#close-button {
+	-fx-margin: 0;
+	-fx-background-radius: 0;
+}
+
+#close-button:hover {
+	-fx-background-color: #646f98;
+	-fx-text-fill: #ffffff;
+}
+
+:flash-highlight {
+  	-fx-effect: dropshadow(three-pass-box, black, 2, 0.2, 1, 0);
+}
