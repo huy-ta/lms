@@ -1,4 +1,4 @@
-package lms.gui;
+package lms.login;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.concurrent.Task;

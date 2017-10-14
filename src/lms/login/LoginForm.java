@@ -1,7 +1,8 @@
-package lms.gui;
+package lms.login;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.concurrent.TimeUnit;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -212,7 +213,16 @@ public class LoginForm extends Application {
         
         setUpLoginGrid();
 		mainGrid.add(loginGrid, 0, 3, 21, 1);
-    }
+		
+		Image hustLogo = new Image(new FileInputStream("/home/huytq/prj1code/LMS/img/hust-logo.jpg"));
+		ImageView hustLogoContainer = new ImageView(hustLogo);
+		hustLogoContainer.setFitHeight(140);
+		hustLogoContainer.setFitWidth(140);
+		hustLogoContainer.setPreserveRatio(true);
+		GridPane.setHalignment(hustLogoContainer, HPos.CENTER);
+		mainGrid.add(hustLogoContainer, 19, 4, 1, 1);
+		GridPane.setMargin(hustLogoContainer, new Insets(110, -10, 0, 0));
+	}
     	// --------------- Login Grid Setup -------------
     	public void setUpLoginGrid() throws FileNotFoundException {
             firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
@@ -258,7 +268,7 @@ public class LoginForm extends Application {
     		signUpTitle.getStyleClass().add("clickable");
 
     		userNameField = new TextField();
-    		userNameField.setPromptText("Please enter your email here");
+    		userNameField.setPromptText("Please enter your username here");
     		loginGrid.add(userNameField, 5, 1, 10, 1);
             userNameField.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
                 if(newValue && firstTime.get()){
@@ -283,7 +293,6 @@ public class LoginForm extends Application {
     		loginGrid.add(loginBtnContainer, 13, 3, 3, 1);
     		
     		actionText = new Text();
-            actionText.setFill(Color.rgb(100, 111, 152));
             actionText.setVisible(false);
             loginGrid.add(actionText, 5, 3, 10, 1);
     		GridPane.setHalignment(actionText, HPos.CENTER);
@@ -300,15 +309,54 @@ public class LoginForm extends Application {
             loginBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
                     userNameField.setDisable(true);
+                    userNameField.getStyleClass().removeAll("warning");
                     pwBox.setDisable(true);
+                    pwBox.getStyleClass().removeAll("warning");
                     loginBtn.setVisible(false);
                     
                     actionText.setVisible(true);
                     actionText.setText("Processing your request. Please wait...");
+                    actionText.setFill(Color.rgb(100, 111, 152));
+
                     flasher.play();
                     loadingView.setVisible(true);
+                    
+                    new java.util.Timer().schedule( 
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    int result = LoginDriver.loginActions(userNameField.getText().trim(), pwBox.getText().trim());
+                                    
+                                    if (result == LoginDriver.loginSuccess) {
+                                    	
+                                    }
+                                    else {
+                                    	actionText.setText(LoginDriver.resultText);
+                                        actionText.setFill(Color.rgb(176, 47, 48));
+                                    	pwBox.setText("");
+                                    	userNameField.setDisable(false);
+                                    	pwBox.setDisable(false);
+                                        loginBtn.setVisible(true);
+
+                                    	if (result == LoginDriver.noUsername) {
+                                    		userNameField.getStyleClass().add("warning");
+                                    		userNameField.setPromptText("Please re-enter your username");
+                                        	userNameField.setText("");
+                                    	}
+                                        else if (result == LoginDriver.wrongPassword) {
+                                        	pwBox.getStyleClass().add("warning");
+                                        	pwBox.setPromptText("Please re-enter your password");
+                                        }
+                                    }
+
+                                    flasher.stop();
+                                    loadingView.setVisible(false);
+                                }
+                            }, 
+                            300 
+                    );
+                    
                 }
             });
             
@@ -380,7 +428,7 @@ public class LoginForm extends Application {
         flasher.setCycleCount(Animation.INDEFINITE);
         
 		scene = new Scene(root, 1200, 600);
-		Font.loadFont(LoginForm.class.getResource("Righteous-Regular.ttf").toExternalForm(), 10);
+		//Font.loadFont(LoginForm.class.getResource("Righteous-Regular.ttf").toExternalForm(), 10);
 		scene.getStylesheets().add(LoginForm.class.getResource("LoginForm.css").toExternalForm());
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Josefin+Sans:400,700");
 		

@@ -31,6 +31,12 @@
 	
 }
 
+.text-field.warning {
+	-fx-border-color: transparent transparent rgb(176, 47, 48) transparent;
+		-fx-prompt-text-fill: rgb(176, 47, 48);
+	
+}
+
 .title-text {
 	-fx-font-size: 30px;
 	-fx-font-weight: bold;
@@ -66,8 +72,16 @@
   	-fx-background-position: right center;
 }
 
+#username.warning {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/man-user-wrong-faint.png');
+}
+
 #username:focused {
  	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/man-user.png');
+}
+
+#username.warning:focused {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/man-user-wrong.png');
 }
 
 #password {
@@ -79,8 +93,16 @@
   	-fx-background-position: right center;
 }
 
+#password.warning {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/key-wrong-faint.png');
+}
+
 #password:focused {
  	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/key.png');
+}
+
+#password.warning:focused {
+ 	-fx-background-image:url('file:/home/huytq/prj1code/LMS/img/key-wrong.png');
 }
 
 .button {
